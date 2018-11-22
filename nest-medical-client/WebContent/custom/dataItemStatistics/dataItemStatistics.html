@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="../../images/favicon.png"
+	type="image/png">
+<title>数据质量报表</title>
+<link href="../../css/style.default.css" rel="stylesheet">
+<link href="../../css/jquery.datatables.css" rel="stylesheet">
+<link href="../../custom/css/frame.css" rel="stylesheet">
+
+<script id='contentTpl1' type="text/template">
+    <%for(var i=0;i < content.length;i++){  
+        var fireInterfaceErrorType = content[i];
+    %> 
+            <div class="panel-heading spread" num="<%=i%>" style="cursor:pointer;background-color: #ADD8E6;">
+                <h3 class="panel-title">
+                    <b><%=fireInterfaceErrorType.errorType%>    错误率:<%=fireInterfaceErrorType.errorRate%>%</b>
+                </h3>
+            </div>
+            <div class="panel-body" id="action<%=i%>">
+                <div class="table-responsive" style="height:160px;overflow: auto;">
+                    <table id="recordTable" class="table" style="table-layout: fixed;" >
+                        <thead>
+                            <tr>
+                                <th style="width:10%">数据项解释</th>
+                                <th style="width:30%">路径</th>
+                                <th style="width:40%">错误内容</th>
+                                <th style="width:10%">错误条数</th>
+                                <th style="width:10%">主键详情</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%for(var j=0;j < fireInterfaceErrorType.fireInterfaceDataItems.length;j++){  
+                                var fireInterfaceDataItem = fireInterfaceErrorType.fireInterfaceDataItems[j];
+                            %>
+                `           <tr>
+                                <td title="<%=fireInterfaceDataItem.describe%>" style="width:10%;overflow: hidden;text-overflow:ellipsis;white-space:nowrap;"><%=fireInterfaceDataItem.describe%></td>
+                                <td title="<%=fireInterfaceDataItem.path%>" style="width:30%;overflow: hidden;text-overflow:ellipsis;white-space:nowrap;"><%=fireInterfaceDataItem.path%></td>
+                                <td title="<%=fireInterfaceDataItem.errorMsg%>" style="width:40%;overflow: hidden;text-overflow:ellipsis;white-space:nowrap;"><%=fireInterfaceDataItem.errorMsg%></td>
+                                <td title="<%=fireInterfaceDataItem.recordNumber%>" style="width:10%;overflow: hidden;text-overflow:ellipsis;white-space:nowrap;"><%=fireInterfaceDataItem.recordNumber%></td>
+                                <td style="width:10%;overflow: hidden;text-overflow:ellipsis;white-space:nowrap;"><button class="btn btn-success btn-sm search" url="../dataItemDetailStatistics/dataItemDetailStatistics.html?dataItem=<%=fireInterfaceDataItem.describe%>">查看</button></td>
+                            </tr>
+                            <%}%> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    <%}%>
+    <div class="panel-body">
+        <ul id='pager'></ul>
+    </div>
+</script>
+<script id='contentTabTitleTpl' type="text/template">
+    <%for(var i=0;i < content.length;i++){  
+        var fireInterfaceErrorType = content[i];
+    %> 
+        <li>
+            <a id="css<%=i%>" errorType="<%=fireInterfaceErrorType.errorType%>" class="tab errorTab" href="#<%=fireInterfaceErrorType.errorType%>" data-toggle="tab">
+                <h3 class="panel-title">
+                    <b><%=fireInterfaceErrorType.errorType%>    错误率:<%=fireInterfaceErrorType.errorRate%>%</b>
+                </h3>
+            </a>
+        </li>
+    <%}%>
+</script>
+<script id='contentTpl' type="text/template">
+    <%for(var i=0;i < content.length;i++){  
+        var fireInterfaceDataItem = content[i];
+    %>
+         <tr>
+             <td title="<%=fireInterfaceDataItem.describe%>" style="width:10%;overflow: hidden;text-overflow:ellipsis;white-space:nowrap;"><%=fireInterfaceDataItem.describe%></td>
+             <td title="<%=fireInterfaceDataItem.path%>" style="width:30%;overflow: hidden;text-overflow:ellipsis;white-space:nowrap;"><%=fireInterfaceDataItem.path%></td>
+             <td title="<%=fireInterfaceDataItem.errorMsg%>" style="width:40%;overflow: hidden;text-overflow:ellipsis;white-space:nowrap;"><%=fireInterfaceDataItem.errorMsg%></td>
+             <td title="<%=fireInterfaceDataItem.recordNumber%>" style="width:10%;overflow: hidden;text-overflow:ellipsis;white-space:nowrap;"><%=fireInterfaceDataItem.recordNumber%></td>
+             <td style="width:10%;overflow: hidden;text-overflow:ellipsis;white-space:nowrap;"><button class="btn btn-success btn-sm search" url="../dataItemDetailStatistics/dataItemDetailStatistics.html?dataItem=<%=fireInterfaceDataItem.describe%>&path=<%=fireInterfaceDataItem.path%>&errorCode=<%=fireInterfaceDataItem.errorCode%>">查看</button></td>
+        </tr>
+    <%}%>
+</script>
+</head>
+<body>
+	<!-- Preloader -->
+	<div id="preloader">
+		<div id="status">
+			<i class="fa fa-spinner fa-spin"></i>
+		</div>
+	</div>
+	<div class="pageheader">
+		<h2>
+			<i class="fa fa-home"></i> FHIR错误数据项统计 <span>FHIR错误数据项统计记录</span>
+		</h2>
+		<div class="breadcrumb-wrapper">
+			<span class="label">你的位置:</span>
+			<ol class="breadcrumb">
+				<li><a href="#">数据质量报告</a></li>
+				<li class="active">基于FHIR的数据质量报告</li>
+			</ol>
+		</div>
+	</div>
+	<!-- <div id="contentpanel" class="contentpanel">
+		<div class="panel panel-default" id="content">
+			
+		</div>
+	</div> -->
+	<div id="contentpanel1" class="contentpanel">
+        <div class="panel panel-default" >
+            <ul  class="nav nav-tabs" id="contentTabTitle">
+			                
+            </ul>
+        </div>
+        <div class="table-responsive">
+                    <table id="recordTable" class="table" style="table-layout: fixed;">
+                        <thead>
+                            <tr>
+                                <th style="width:10%">数据项解释</th>
+                                <th style="width:30%">路径</th>
+                                <th style="width:40%">错误内容</th>
+                                <th style="width:10%">错误条数</th>
+                                <th style="width:10%">主键详情</th>
+                            </tr>
+                        </thead>
+                        <tbody id="content">
+                             
+                        </tbody>
+                    </table>
+        </div>
+        <div>
+             <ul id='pager'></ul>
+        </div>
+    </div>
+	<script src="../../js/jquery-1.11.1.min.js"></script>
+    <script src="../../lib/My97DatePicker/WdatePicker.js"></script>
+    <script src="../../js/jquery.validate.min.js"></script>
+    <script src="../../js/jquery.blockUI.js"></script>
+    <script src="../../js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/modernizr.min.js"></script>
+    <script src="../../js/jquery.sparkline.min.js"></script>
+    <script src="../../js/jquery.cookies.js"></script>
+    <script src="../../js/toggles.min.js"></script>
+    <script src="../../js/retina.min.js"></script>
+    <script src="../../js/custom.js"></script>
+    <script src="../../js/select2.min.js"></script>
+    <script src="../../custom/js/common/Common.js"></script>
+    <script src="../../custom/js/common/Pager.js"></script>
+    <script src="../../custom/js/common/FhirResourceService.js"></script>
+	<script src="../js/common/baiduTemplate.js"></script>
+	<script src="../js/common/commonFunction.js"></script>
+    <script src="js/dataItemStatistics.js"></script>
+</body>
+</html>

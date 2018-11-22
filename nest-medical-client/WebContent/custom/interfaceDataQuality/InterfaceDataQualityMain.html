@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="../../images/favicon.png"
+	type="image/png">
+<title>数据质量报表</title>
+<link href="../../css/style.default.css" rel="stylesheet">
+<link href="../../css/jquery.datatables.css" rel="stylesheet">
+<link href="../../custom/css/frame.css" rel="stylesheet">
+
+<script id='contentTpl' type="text/template">
+    <%for(var i=0;i < content.length;i++){
+       var fireInterfaceSummary = content[i];
+    %>
+        <tr>
+             <td><%=fireInterfaceSummary.logicInterfaceName%></td>
+             <td><%=fireInterfaceSummary.physicalInterfaceName%></td>
+             <td><%=fireInterfaceSummary.errorRate%>%</td>
+             <td><%=fireInterfaceSummary.recordNumber%></td>
+             <%if(fireInterfaceSummary.errorRate > 0){%>
+             <td><button class="btn btn-success btn-sm search" url="../dataItemStatistics/dataItemStatistics.html?physicalInterfaceName=<%=fireInterfaceSummary.physicalInterfaceName%>&logicName=<%=fireInterfaceSummary.logicInterfaceName%>">查看</button></td>
+             <%}else{%>
+             
+             <%}%>
+        </tr>
+    <%}%>
+</script>
+</head>
+<body>
+<!-- progress -->
+<div class="modal fade" id="loadingModal">
+    <div style="width: 200px;height:20px; z-index: 20000; position: absolute; text-align: center; left: 50%; top: 50%;margin-left:-100px;margin-top:-10px">
+        <div class="progress progress-striped active" style="margin-bottom: 0;">
+            <div  class="progress-bar" style="width: 100%;"></div>
+        </div>
+        <h5 id="rate">正在下载excel...</h5>
+    </div>
+</div>
+	<!-- Preloader -->
+	<div id="preloader">
+		<div id="status">
+			<i class="fa fa-spinner fa-spin"></i>
+		</div>
+	</div>
+	<div class="pageheader">
+		<h2>
+			<i class="fa fa-home"></i> FHIR接口消息汇总统计 <span>FHIR接口消息汇总统计记录</span>
+		</h2>
+		<div class="breadcrumb-wrapper">
+			<span class="label">你的位置:</span>
+			<ol class="breadcrumb">
+				<li><a href="#">数据质量报告</a></li>
+				<li class="active">基于FHIR接口的数据质量报告</li>
+			</ol>
+		</div>
+	</div>
+	<div id="contentpanel" class="contentpanel">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form id="searchForm" class="form-horizontal" action="#"method="get" onsubmit="return false">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="panel-btns">
+								<p>按条件查询</p>
+							</div>
+						</div>
+						<div class="panel-body">
+						    <div class="form-group">
+                                <label class="col-sm-2 control-label">时间段</label>
+                                <div class="col-sm-2">
+                                    <input type="text" id="start" class="form-control"
+                                        onClick="WdatePicker({skin:'twoer',dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+                                        readonly="readonly" name="start"
+                                        placeholder="点击选择错误起始时间">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" id="end" class="form-control"
+                                        onClick="WdatePicker({skin:'twoer',dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+                                        readonly="readonly" name="end"
+                                        placeholder="点击选择错误截止时间">
+                                </div>
+                                <label class="col-sm-2 control-label">服务名称</label>
+                                <div class="col-sm-2">
+                                    <input type="text" placeholder="服务名称" id="tableName" name="tableName"
+                                        class="form-control" onkeydown="if(event.keyCode==13) return false;">
+                                </div>
+                                <input type="reset" style="display:none" />
+                                <button url="/api/dataQualityReport/excelFireDownLoad/" class="btn btn-primary excel" style="float:right;">Excel导出</button> 
+                            </div>
+						</div>
+					</div>
+				</form>
+				
+				<div class="btn-toolbar" role="toolbar">
+					<div class="col-sm-5">
+					</div>
+					<div class="col-sm-1">
+					   <button class="btn btn-success btn-sm center-block" id="searchBtn">查询</button>  
+                    </div>
+                    <div class="col-sm-1">
+                        <button class="btn btn-success btn-sm" id="resetBtn">重置</button> 
+                    </div>
+				</div>
+				<hr/>
+				<div class="table-responsive">
+					<table id="recordTable" class="table">
+						<thead>
+							<tr>
+								<th>接口服务名</th>
+								<th>接口资源名</th>
+								<th>错误率</th>
+								<th>记录数</th>
+								<th>错误详情</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						     
+						</tbody>
+					</table>
+				</div>
+				<div>
+                    <ul id='pager'></ul>
+                </div>
+			</div>
+
+		</div>
+	</div>
+	<script src="../../js/jquery-1.11.1.min.js"></script>
+    <script src="../../lib/My97DatePicker/WdatePicker.js"></script>
+    <script src="../../js/jquery.validate.min.js"></script>
+    <script src="../../js/jquery.blockUI.js"></script>
+    <script src="../../js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/modernizr.min.js"></script>
+    <script src="../../js/jquery.sparkline.min.js"></script>
+    <script src="../../js/jquery.cookies.js"></script>
+    <script src="../../js/toggles.min.js"></script>
+    <script src="../../js/retina.min.js"></script>
+    <script src="../../js/custom.js"></script>
+    <script src="../../js/select2.min.js"></script>
+    <script src="../../custom/js/common/Common.js"></script>
+    <script src="../../custom/js/common/Pager.js"></script>
+    <script src="../../custom/js/common/FhirResourceService.js"></script>
+	<script src="../js/common/baiduTemplate.js"></script>
+	<script src="../js/common/commonFunction.js"></script>
+    <script src="js/interfaceDataQualityMain.js"></script>
+</body>
+</html>

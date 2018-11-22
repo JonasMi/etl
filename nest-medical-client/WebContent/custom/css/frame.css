@@ -1,0 +1,37 @@
+body {
+	background: #e4e7ea;
+}
+.blank{
+	color: #eee;
+}
+
+#nestRequestDetailModal label {
+	text-align: right;
+}
+
+#nestRequestDetailModal textarea {
+	resize: none;
+}
+
+#messageDetailModal .tab-pane {	
+	height: 500px;
+	overflow-y: scroll;
+}
+#messageMetaModal .modal-body{
+	height: 600px;
+	overflow-y: scroll;
+}
+
+.tableSty thead > tr > th{
+	background-color: #ecebf2;
+}
+.ibox-content {
+	background-color:#ffffff;
+	color: inherit;
+	padding: 15px 20px 20px 20px;
+
+	border-color:#e7eaec;
+	border-image: none;
+	border-style: solid solid none;
+	border-width: 1px 0;
+}

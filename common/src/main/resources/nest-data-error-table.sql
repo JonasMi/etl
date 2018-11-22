@@ -1,0 +1,20 @@
+create table if not exists t_zz_data_error_msg_${number}(
+	id bigint(20) not null auto_increment,
+	identifier varchar(255),
+	logic_interface_name varchar(255),
+	message_id varchar(255),
+	operation_state int,
+	physical_interface_name varchar(255),
+	up_hospital varchar(50),
+	up_hospital_name varchar(255),
+	up_time datetime,
+	date_item_name varchar(255),
+	element_path varchar(255),
+	error_code varchar(50),
+	error_detail text,
+	error_msg varchar(255),
+	error_type varchar(50),
+	path text,
+	type varchar(50),
+	PRIMARY KEY (id)
+)

@@ -1,0 +1,17 @@
+nest-medical-service-storage/.settings/
+nest-medical-service/.settings/
+nest-medical-history/.settings/
+**/.idea/*
+*.class
+*/target/
+*.iml
+nest-medical-history/bin/
+nest-medical-history/.project
+nest-medical-service/.project
+nest-medical-service-storage/.project
+nest-medical-service-storage/.classpath
+nest-medical-service/.gitignore
+nest-medical-service-storage/.gitignore
+nest-medical-service/.classpath
+nest-medical-history/application.pid
+nest-medical-history/.classpath

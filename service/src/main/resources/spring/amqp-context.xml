@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd
+                           http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+	<!-- 以下为rabbitmq相关 -->
+	<rabbit:connection-factory id="connectionFactory"
+		username="${queue.username}" addresses="${queue.address}" password="${queue.password}" />
+
+	<rabbit:admin connection-factory="connectionFactory" />
+
+	<rabbit:queue id="messageSendedQueue" name="${queue.message.finished}"
+		queue-arguments="messageSendedQueueArgs" />
+
+	<rabbit:queue id="dataQualityQueue" name="${queue.message.data.quality}"
+		queue-arguments="dataQualityQueueArgs" />
+
+	<rabbit:queue-arguments id="dataQualityQueueArgs">
+		<entry key="x-dead-letter-exchange" value="${queue.message.data.quality.dead.x}" />
+	</rabbit:queue-arguments>
+
+	<rabbit:queue-arguments id="messageSendedQueueArgs">
+		<entry key="x-dead-letter-exchange" value="${queue.message.finished.dead.x}" />
+	</rabbit:queue-arguments>
+
+	<rabbit:template id="rabbitTemplate"
+		connection-factory="connectionFactory" />
+
+	<rabbit:queue id="messageSendedDeadQueue" name="${queue.message.finished.dead}" />
+	<rabbit:queue id="dataQualityDeadQueue" name="${queue.message.data.quality.dead}" />
+
+	<rabbit:topic-exchange name="${queue.message.finished.x}">
+		<rabbit:bindings>
+			<rabbit:binding pattern="#" queue="messageSendedQueue" />
+		</rabbit:bindings>
+	</rabbit:topic-exchange>
+
+	<rabbit:topic-exchange name="${queue.message.data.quality.x}">
+		<rabbit:bindings>
+			<rabbit:binding pattern="#" queue="dataQualityQueue" />
+		</rabbit:bindings>
+	</rabbit:topic-exchange>
+
+
+
+	<rabbit:topic-exchange name="${queue.message.finished.dead.x}">
+		<rabbit:bindings>
+			<rabbit:binding pattern="#" queue="messageSendedDeadQueue" />
+		</rabbit:bindings>
+	</rabbit:topic-exchange>
+
+	<rabbit:topic-exchange name="${queue.message.data.quality.dead.x}">
+		<rabbit:bindings>
+			<rabbit:binding pattern="#" queue="dataQualityDeadQueue" />
+		</rabbit:bindings>
+	</rabbit:topic-exchange>
+
+</beans>

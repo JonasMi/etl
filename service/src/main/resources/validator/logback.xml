@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="10 seconds">
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
+	<appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level
+				%logger-%msg%n</Pattern>
+		</layout>
+	</appender>
+	<root level="INFO">
+		<appender-ref ref="ConsoleAppender" />
+	</root>
+	<logger name="com.nestvision.nest.proxy" level="INFO"
+		additivity="false">
+		<appender-ref ref="ConsoleAppender" />
+	</logger>
+	<logger name="org.springframework.ws.client.MessageTracing.received" level="INFO"
+		additivity="false">
+		<appender-ref ref="ConsoleAppender" />
+	</logger>
+
+
+</configuration>

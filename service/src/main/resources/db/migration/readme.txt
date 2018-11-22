@@ -1,0 +1,2 @@
+这个文件夹里放置sql脚本进行数据库版本的控制
+文件命名方式:版本__描述.sql==>V2__Create_person_table.sql

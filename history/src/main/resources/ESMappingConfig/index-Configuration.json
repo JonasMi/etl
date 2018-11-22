@@ -1,0 +1,29 @@
+{
+	"properties": {
+        		"hospital": {
+                    "type":     "string",
+                    "fielddata": true,
+                    "analyzer":"whitespace"
+                },
+                "interfaceName": {
+                    "type":     "string",
+                    "fielddata": true,
+                   "analyzer":"whitespace"
+                },
+                "upHospital": {
+                    "type":     "string",
+                    "fielddata": true,
+                   "analyzer":"whitespace"
+                },
+                "logicInterfaceName": {
+                    "type":     "string",
+                    "fielddata": true,
+                   "analyzer":"whitespace"
+                },
+                "identifier": {
+                    "type":     "string",
+                    "fielddata": true,
+                   "analyzer":"whitespace"
+                }
+     }
+}

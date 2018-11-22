@@ -1,0 +1,466 @@
+[
+    {
+        "resourceType": "EtlCodeSystem",
+        "version": "1.0",
+        "name": "CUS00001",
+        "status": "active",
+        "publisher": "nestvision.com",
+        "description": "院内系统类型代码表",
+        "caseSensitive": true,
+        "content": "complete",
+        "concept": [
+            {
+                "code": "his",
+                "display": "his"
+            },
+            {
+                "code": "lis",
+                "display": "lis"
+            },
+            {
+                "code": "pacs",
+                "display": "pacs"
+            }
+        ]
+    },
+    {
+        "resourceType": "EtlCodeSystem",
+        "version": "1.0",
+        "name": "CUS00002",
+        "status": "active",
+        "publisher": "nestvision.com",
+        "description": "操作状态代码表",
+        "caseSensitive": true,
+        "content": "complete",
+        "concept": [
+            {
+                "code": "0",
+                "display": "新增"
+            },
+            {
+                "code": "1",
+                "display": "更新"
+            }
+        ]
+    },
+    {
+        "resourceType": "EtlCodeSystem",
+        "version": "1.0",
+        "name": "CUS00003",
+        "status": "active",
+        "publisher": "nestvision.com",
+        "description": "医务人员岗位代码表",
+        "caseSensitive": true,
+        "content": "complete",
+        "concept": [
+            {
+                "code": "doctor",
+                "display": "医生"
+            },
+            {
+                "code": "nurse",
+                "display": "护士"
+            }
+        ]
+    },
+    {
+        "resourceType": "EtlCodeSystem",
+        "version": "1.0",
+        "name": "CUS00004",
+        "status": "active",
+        "publisher": "nestvision.com",
+        "description": "是否代码表",
+        "caseSensitive": true,
+        "content": "complete",
+        "concept": [
+            {
+                "code": "0",
+                "display": "否"
+            },
+            {
+                "code": "1",
+                "display": "是"
+            }
+        ]
+    },
+    {
+        "resourceType": "EtlCodeSystem",
+        "version": "1.0",
+        "name": "CUS00005",
+        "status": "active",
+        "publisher": "nestvision.com",
+        "description": "床位使用状态代码表",
+        "caseSensitive": true,
+        "content": "complete",
+        "concept": [
+            {
+                "code": "activ",
+                "display": "启用"
+            },
+            {
+                "code": "suspended",
+                "display": "停用"
+            },
+            {
+                "code": "inactive",
+                "display": "无效"
+            }
+        ]
+    },
+    {
+        "resourceType": "EtlCodeSystem",
+        "version": "1.0",
+        "name": "CUS00006",
+        "status": "active",
+        "publisher": "nestvision.com",
+        "description": "号源状态代码表",
+        "caseSensitive": true,
+        "content": "complete",
+        "concept": [
+            {
+                "code": "busy",
+                "display": "被使用"
+            },
+            {
+                "code": "free",
+                "display": "未使用"
+            }
+        ]
+    },
+    {
+        "resourceType": "EtlCodeSystem",
+        "version": "1.0",
+        "name": "CUS00007",
+        "status": "active",
+        "publisher": "nestvision.com",
+        "description": "门诊挂号状态代码表",
+        "caseSensitive": true,
+        "content": "complete",
+        "concept": [
+            {
+                "code": "booked",
+                "display": "已预约"
+            },
+            {
+                "code": "arrived",
+                "display": "已取票"
+            },
+            {
+                "code": "cancelled",
+                "display": "已取消"
+            }
+        ]
+    },
+    {
+        "resourceType": "EtlCodeSystem",
+        "version": "1.0",
+        "name": "CUS00008",
+        "status": "active",
+        "publisher": "nestvision.com",
+        "description": "处方状态代码表",
+        "caseSensitive": true,
+        "content": "complete",
+        "concept": [
+            {
+                "code": "active",
+                "display": "进行中"
+            },
+            {
+                "code": "completed",
+                "display": "完成"
+            },
+            {
+                "code": "stopped",
+                "display": "停止"
+            },
+            {
+                "code": "entered-in-error",
+                "display": "错误"
+            }
+        ]
+    },
+    {
+        "resourceType": "EtlCodeSystem",
+        "version": "1.0",
+        "name": "CUS00009",
+        "status": "active",
+        "publisher": "nestvision.com",
+        "description": "检查检验申请状态代码表",
+        "caseSensitive": true,
+        "content": "complete",
+        "concept": [
+            {
+                "code": "draft",
+                "display": "草案"
+            },
+            {
+                "code": "in-progress",
+                "display": "申请中"
+            },
+            {
+                "code": "completed",
+                "display": "申请完成"
+            },
+            {
+                "code": "cancelled",
+                "display": "取消"
+            },
+            {
+                "code": "suspended",
+                "display": "暂停"
+            },
+            {
+                "code": "rejected",
+                "display": "拒绝"
+            },
+            {
+                "code": "failed",
+                "display": "申请失败"
+            },
+            {
+                "code": "entered-in-erro",
+                "display": "错误的申请"
+            }
+        ]
+    },
+    {
+        "resourceType": "EtlCodeSystem",
+        "version": "1.0",
+        "name": "CUS00010",
+        "status": "active",
+        "publisher": "nestvision.com",
+        "description": "检查检验优先等级代码表",
+        "caseSensitive": true,
+        "content": "complete",
+        "concept": [
+            {
+                "code": "routine",
+                "display": "一般"
+            },
+            {
+                "code": "asap",
+                "display": "尽快"
+            },
+            {
+                "code": "urgent",
+                "display": "紧急"
+            }
+        ]
+    },
+    {
+        "resourceType": "EtlCodeSystem",
+        "version": "1.0",
+        "name": "CUS00011",
+        "status": "active",
+        "publisher": "nestvision.com",
+        "description": "门诊住院标识代码表",
+        "caseSensitive": true,
+        "content": "complete",
+        "concept": [
+            {
+                "code": "1",
+                "display": "门诊"
+            },
+            {
+                "code": "2",
+                "display": "住院"
+            }
+        ]
+    },
+    {
+        "resourceType": "EtlCodeSystem",
+        "version": "1.0",
+        "name": "CUS00012",
+        "status": "active",
+        "publisher": "nestvision.com",
+        "description": "检查检验报告代码表",
+        "caseSensitive": true,
+        "content": "complete",
+        "concept": [
+            {
+                "code": "final",
+                "display": "完成"
+            },
+            {
+                "code": "cancelled",
+                "display": "取消"
+            },
+            {
+                "code": "entered-in-error",
+                "display": "错误"
+            }
+        ]
+    },
+    {
+        "resourceType": "EtlCodeSystem",
+        "version": "1.0",
+        "name": "CUS00013",
+        "status": "active",
+        "publisher": "nestvision.com",
+        "description": "检验标本状态代码表",
+        "caseSensitive": true,
+        "content": "complete",
+        "concept": [
+            {
+                "code": "available",
+                "display": "可利用"
+            },
+            {
+                "code": "unavailable",
+                "display": "不可利用"
+            },
+            {
+                "code": "unsatisfactory",
+                "display": "不符合要求"
+            },
+            {
+                "code": "entered-in-error",
+                "display": "错误"
+            }
+        ]
+    },
+    {
+        "resourceType": "EtlCodeSystem",
+        "version": "1.0",
+        "name": "CUS00014",
+        "status": "active",
+        "publisher": "nestvision.com",
+        "description": "手术申请状态代码表",
+        "caseSensitive": true,
+        "content": "complete",
+        "concept": [
+            {
+                "code": "requested",
+                "display": "请求中"
+            },
+            {
+                "code": "accepted",
+                "display": "接受"
+            },
+            {
+                "code": "completed",
+                "display": "同意申请"
+            },
+            {
+                "code": "suspended",
+                "display": "暂停"
+            },
+            {
+                "code": "rejected",
+                "display": "拒绝"
+            },
+            {
+                "code": "aborted",
+                "display": "失败"
+            }
+        ]
+    },
+    {
+        "resourceType": "EtlCodeSystem",
+        "version": "1.0",
+        "name": "CUS00015",
+        "status": "active",
+        "publisher": "nestvision.com",
+        "description": "手术处置过程状态代码表",
+        "caseSensitive": true,
+        "content": "complete",
+        "concept": [
+            {
+                "code": "in-progress",
+                "display": "进展中"
+            },
+            {
+                "code": "aborted",
+                "display": "失败"
+            },
+            {
+                "code": "completed",
+                "display": "完成"
+            },
+            {
+                "code": "entered-in-error",
+                "display": "错误"
+            }
+        ]
+    },
+    {
+        "resourceType": "EtlCodeSystem",
+        "version": "1.0",
+        "name": "CUS00016",
+        "status": "active",
+        "publisher": "nestvision.com",
+        "description": "农合医保标识代码表",
+        "caseSensitive": true,
+        "content": "complete",
+        "concept": [
+            {
+                "code": "1",
+                "display": "农合"
+            },
+            {
+                "code": "2",
+                "display": "医保"
+            }
+        ]
+    },
+    {
+        "resourceType": "EtlCodeSystem",
+        "version": "1.0",
+        "name": "CUS00017",
+        "status": "active",
+        "publisher": "nestvision.com",
+        "description": "转科状态代码表",
+        "caseSensitive": true,
+        "content": "complete",
+        "concept": [
+            {
+                "code": "active",
+                "display": "转出待转入"
+            },
+            {
+                "code": "completed",
+                "display": "完成"
+            }
+        ]
+    },
+    {
+        "resourceType": "EtlCodeSystem",
+        "version": "1.0",
+        "name": "CUS00018",
+        "status": "active",
+        "publisher": "nestvision.com",
+        "description": "证件类别代码",
+        "caseSensitive": true,
+        "content": "complete",
+        "concept": [
+            {
+                "code": "01",
+                "display": "居民身份证"
+            },
+            {
+                "code": "02",
+                "display": "居民户口簿"
+            },
+            {
+                "code": "03",
+                "display": "护照"
+            },
+            {
+                "code": "04",
+                "display": "军官证"
+            },
+            {
+                "code": "05",
+                "display": "驾驶证"
+            },
+            {
+                "code": "06",
+                "display": "港澳居民来往内地通行证"
+            },
+            {
+                "code": "07",
+                "display": "台湾居民来往内地通行证"
+            }
+        ]
+    }
+]

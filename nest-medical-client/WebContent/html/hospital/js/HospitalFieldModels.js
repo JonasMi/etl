@@ -1,0 +1,102 @@
+var datetimeValueHandler = function(value){
+	var date = new Date(value);
+	return date.format('yyyy-MM-dd hh:mm:ss');
+};
+var fieldModels = [ 
+{
+'name' : 'NAME',
+'displayName' : '名称',
+'type' : 'varchar(40)',
+'javaName' : 'name',
+'note' : '',
+'nullable':false,
+'check':''},
+{
+'name' : 'PHONE',
+'displayName' : '联系方式',
+'type' : 'varchar(20)',
+'javaName' : 'phone',
+'note' : '',
+'nullable':true,
+'check':''},
+{
+'name' : 'ADDRESS',
+'displayName' : '通信地址',
+'type' : 'varchar(40)',
+'javaName' : 'address',
+'note' : '',
+'nullable':true,
+'check':''},
+{
+'name' : 'ZIPCODE',
+'displayName' : '邮政编码',
+'type' : 'varchar(20)',
+'javaName' : 'zipcode',
+'note' : '',
+'nullable':true,
+'check':''},
+{
+'name' : 'WEBSITE',
+'displayName' : '网站',
+'type' : 'varchar(20)',
+'javaName' : 'website',
+'note' : '',
+'nullable':true,
+'check':''},
+{
+'name' : 'AREA',
+'displayName' : '所在地区（区县）',
+'type' : 'varchar(20)',
+'javaName' : 'area',
+'note' : '',
+'nullable':true,
+'check':''},
+{
+'name' : 'LATANDLON',
+'displayName' : '医院经纬度',
+'type' : 'varchar(20)',
+'javaName' : 'latandlon',
+'note' : '',
+'nullable':true,
+'check':''},
+{
+'name' : 'ORGGRADE',
+'displayName' : '医院等级',
+'type' : 'varchar(20)',
+'javaName' : 'orggrade',
+'note' : '',
+'nullable':true,
+'check':''},
+{
+'name' : 'RIDEWAY',
+'displayName' : '乘车方式',
+'type' : 'varchar(200)',
+'javaName' : 'rideway',
+'note' : '',
+'nullable':true,
+'check':''},
+{
+'name' : 'ORGINTRODUCE',
+'displayName' : '医院简介',
+'type' : 'varchar(2000)',
+'javaName' : 'orgintroduce',
+'note' : '',
+'nullable':true,
+'check':''},
+{
+'name' : 'ORGPHOTO',
+'displayName' : '医院照片',
+'type' : 'clob',
+'javaName' : 'orgphoto',
+'note' : 'base64位编码',
+'nullable':true,
+'check':''},
+{
+'name' : 'ORGSTATE',
+'displayName' : '医院状态',
+'type' : 'varchar(10)',
+'javaName' : 'orgstate',
+'note' : '',
+'nullable':true,
+'check':'CV990103'}
+];

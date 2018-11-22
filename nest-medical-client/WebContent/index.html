@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/ico">
+<title>ETL</title>
+<link href="css/style.default.css" rel="stylesheet">
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->
+</head>
+<body>
+	<!-- Preloader -->
+	<div id="preloader">
+		<div id="status">
+			<i class="fa fa-spinner fa-spin"></i>
+		</div>
+	</div>
+
+	<section>
+		<div class="leftpanel">
+
+			<div class="logopanel">
+				<h1>
+					<span>[</span> Nest-Proxy <span>]</span>
+				</h1>
+			</div>
+			<!-- logopanel -->
+
+			<div class="leftpanelinner">
+				<h5 class="sidebartitle">消息分类</h5>
+				<ul class="nav nav-pills nav-stacked nav-bracket">
+											<li class="nav-parent">
+							<a href="#"><span>基础资源</span></a>
+							<ul class="children">
+								<li><a target="content" href="html/hospital/HospitalMain.html"><i class="fa fa-caret-right"></i>医疗机构信息</a></li>
+								<li><a target="content" href="html/department/DepartmentMain.html"><i class="fa fa-caret-right"></i>科室信息</a></li>
+								<li><a target="content" href="html/employee/EmployeeMain.html"><i class="fa fa-caret-right"></i>医务人员信息</a></li>
+								<li><a target="content" href="html/bed/BedMain.html"><i class="fa fa-caret-right"></i>床位信息</a></li>
+								<li><a target="content" href="html/medication/MedicationMain.html"><i class="fa fa-caret-right"></i>药品信息</a></li>
+								<li><a target="content" href="html/chargingItem/ChargingItemMain.html"><i class="fa fa-caret-right"></i>收费项目信息</a></li>
+								<li><a target="content" href="html/clinictype/ClinictypeMain.html"><i class="fa fa-caret-right"></i>号别信息</a></li>
+								<li><a target="content" href="html/schedule/ScheduleMain.html"><i class="fa fa-caret-right"></i>排班信息</a></li>
+								<li><a target="content" href="html/slot/SlotMain.html"><i class="fa fa-caret-right"></i>号源信息</a></li>
+								<li><a target="content" href="html/patient/PatientMain.html"><i class="fa fa-caret-right"></i>患者信息</a></li>
+							</ul>							
+						</li>
+						<li class="nav-parent">
+							<a href="#"><span>卫生事件</span></a>
+							<ul class="children">
+								<li><a target="content" href="html/appointment/AppointmentMain.html"><i class="fa fa-caret-right"></i>挂号信息</a></li>
+								<li><a target="content" href="html/outpatientRegistration/OutpatientRegistrationMain.html"><i class="fa fa-caret-right"></i>门诊登记</a></li>
+								<li><a target="content" href="html/inpatientRegistration/InpatientRegistrationMain.html"><i class="fa fa-caret-right"></i>住院登记</a></li>
+								<li><a target="content" href="html/outpatientDiagnosis/OutpatientDiagnosisMain.html"><i class="fa fa-caret-right"></i>门（急）诊诊断</a></li>
+								<li><a target="content" href="html/inhospitalDiagnosis/InhospitalDiagnosisMain.html"><i class="fa fa-caret-right"></i>入院诊断</a></li>
+								<li><a target="content" href="html/outhospitalMajorDiagnosis/OuthospitalMajorDiagnosisMain.html"><i class="fa fa-caret-right"></i>出院主要诊断</a></li>
+								<li><a target="content" href="html/outhospitalOtherDiagnosis/OuthospitalOtherDiagnosisMain.html"><i class="fa fa-caret-right"></i>出院其它诊断</a></li>
+								<li><a target="content" href="html/pathologyDiagnosis/PathologyDiagnosisMain.html"><i class="fa fa-caret-right"></i>病理诊断</a></li>
+								<li><a target="content" href="html/inpatientSymptom/InpatientSymptomMain.html"><i class="fa fa-caret-right"></i>住院症状记录</a></li>
+								<li><a target="content" href="html/outpatientSymptom/OutpatientSymptomMain.html"><i class="fa fa-caret-right"></i>门诊症状记录</a></li>
+								<li><a target="content" href="html/neonatalDefectsDiagnosis/NeonatalDefectsDiagnosisMain.html"><i class="fa fa-caret-right"></i>新生儿缺陷诊断记录</a></li>
+								<li><a target="content" href="html/inInjuryExternalCause/InInjuryExternalCauseMain.html"><i class="fa fa-caret-right"></i>损伤中毒外部原因记录</a></li>
+								<li><a target="content" href="html/inspectOrder/InspectOrderMain.html"><i class="fa fa-caret-right"></i>检查申请</a></li>
+								<li><a target="content" href="html/inspectReport/InspectReportMain.html"><i class="fa fa-caret-right"></i>检查报告</a></li>
+								<li><a target="content" href="html/examineOrder/ExamineOrderMain.html"><i class="fa fa-caret-right"></i>检验申请</a></li>
+								<li><a target="content" href="html/examineReport/ExamineReportMain.html"><i class="fa fa-caret-right"></i>检验报告主表</a></li>
+								<li><a target="content" href="html/longtermAdvice/LongtermAdviceMain.html"><i class="fa fa-caret-right"></i>长期医嘱</a></li>
+								<li><a target="content" href="html/temporaryAdvice/TemporaryAdviceMain.html"><i class="fa fa-caret-right"></i>临时医嘱</a></li>
+								<li><a target="content" href="html/outpatientPrescription/OutpatientPrescriptionMain.html"><i class="fa fa-caret-right"></i>门诊处方主表</a></li>
+								<li><a target="content" href="html/operationOrder/OperationOrderMain.html"><i class="fa fa-caret-right"></i>手术申请单</a></li>
+								<li><a target="content" href="html/operation/OperationMain.html"><i class="fa fa-caret-right"></i>手术过程</a></li>
+								<li><a target="content" href="html/outpatientCharges/OutpatientChargesMain.html"><i class="fa fa-caret-right"></i>门诊收费主表</a></li>
+								<li><a target="content" href="html/inpatientCharges/InpatientChargesMain.html"><i class="fa fa-caret-right"></i>住院收费主表</a></li>
+								<li><a target="content" href="html/referral/ReferralMain.html"><i class="fa fa-caret-right"></i>转诊信息</a></li>
+							</ul>							
+						</li>
+						<li class="nav-parent">
+							<a href="#"><span>电子病历</span></a>
+							<ul class="children">
+								<li><a target="content" href="html/medicalRecordOutline/MedicalRecordOutlineMain.html"><i class="fa fa-caret-right"></i>病历概要</a></li>
+								<li><a target="content" href="html/outpatientMedicalRecord/OutpatientMedicalRecordMain.html"><i class="fa fa-caret-right"></i>门（急）诊病历</a></li>
+								<li><a target="content" href="html/emergencyMedicalRecords/EmergencyMedicalRecordsMain.html"><i class="fa fa-caret-right"></i>急诊留观病历</a></li>
+								<li><a target="content" href="html/treatmentRecord/TreatmentRecordMain.html"><i class="fa fa-caret-right"></i>治疗记录</a></li>
+								<li><a target="content" href="html/operationRecord/OperationRecordMain.html"><i class="fa fa-caret-right"></i>一般手术记录</a></li>
+								<li><a target="content" href="html/preoperativeInterviewRecord/PreoperativeInterviewRecordMain.html"><i class="fa fa-caret-right"></i>麻醉术前访视记录</a></li>
+								<li><a target="content" href="html/anaesthesiaRecord/AnaesthesiaRecordMain.html"><i class="fa fa-caret-right"></i>麻醉记录</a></li>
+								<li><a target="content" href="html/afterAnesthesiaInterview/AfterAnesthesiaInterviewMain.html"><i class="fa fa-caret-right"></i>麻醉术后访视记录</a></li>
+								<li><a target="content" href="html/metachysisRecord/MetachysisRecordMain.html"><i class="fa fa-caret-right"></i>输血记录</a></li>
+								<li><a target="content" href="html/expectantRecord/ExpectantRecordMain.html"><i class="fa fa-caret-right"></i>待产记录</a></li>
+								<li><a target="content" href="html/vaginalDeliveryRecord/VaginalDeliveryRecordMain.html"><i class="fa fa-caret-right"></i>阴道分娩记录</a></li>
+								<li><a target="content" href="html/cesareanSectionRecord/CesareanSectionRecordMain.html"><i class="fa fa-caret-right"></i>剖宫产记录</a></li>
+								<li><a target="content" href="html/generalNursingRecords/GeneralNursingRecordsMain.html"><i class="fa fa-caret-right"></i>一般护理记录</a></li>
+								<li><a target="content" href="html/seriousCriticalNursingRecord/SeriousCriticalNursingRecordMain.html"><i class="fa fa-caret-right"></i>病重（病危）护理记录</a></li>
+								<li><a target="content" href="html/surgicalNursingRecord/SurgicalNursingRecordMain.html"><i class="fa fa-caret-right"></i>手术护理记录</a></li>
+								<li><a target="content" href="html/vitalSignsMeasurementRecord/VitalSignsMeasurementRecordMain.html"><i class="fa fa-caret-right"></i>生命体征测量记录</a></li>
+								<li><a target="content" href="html/intakeAndOutputRecord/IntakeAndOutputRecordMain.html"><i class="fa fa-caret-right"></i>出入量记录</a></li>
+								<li><a target="content" href="html/expensiveMedicalConsumables/ExpensiveMedicalConsumablesMain.html"><i class="fa fa-caret-right"></i>高值耗材使用记录</a></li>
+								<li><a target="content" href="html/admissionAssessmentRecords/AdmissionAssessmentRecordsMain.html"><i class="fa fa-caret-right"></i>入院评估</a></li>
+								<li><a target="content" href="html/carePlanRecords/CarePlanRecordsMain.html"><i class="fa fa-caret-right"></i>护理计划</a></li>
+								<li><a target="content" href="html/dischargeAssessmentGuidance/DischargeAssessmentGuidanceMain.html"><i class="fa fa-caret-right"></i>出院评估与指导</a></li>
+								<li><a target="content" href="html/informingInformation/InformingInformationMain.html"><i class="fa fa-caret-right"></i>手术知情同意书</a></li>
+								<li><a target="content" href="html/anesthesiaInformedConsent/AnesthesiaInformedConsentMain.html"><i class="fa fa-caret-right"></i>麻醉知情同意书</a></li>
+								<li><a target="content" href="html/transfusionTherapyConsent/TransfusionTherapyConsentMain.html"><i class="fa fa-caret-right"></i>输血治疗同意书</a></li>
+								<li><a target="content" href="html/specialInspectionTreatmentCo/SpecialInspectionTreatmentCoMain.html"><i class="fa fa-caret-right"></i>特殊检查及特殊治疗同意书</a></li>
+								<li><a target="content" href="html/noticeIncriticalCondition/NoticeIncriticalConditionMain.html"><i class="fa fa-caret-right"></i>病危（重）通知书</a></li>
+								<li><a target="content" href="html/otherInformedConsent/OtherInformedConsentMain.html"><i class="fa fa-caret-right"></i>其他知情同意书</a></li>
+								<li><a target="content" href="html/medicalRecord/MedicalRecordMain.html"><i class="fa fa-caret-right"></i>住院病案首页</a></li>
+								<li><a target="content" href="html/tiMedicalRecord/TiMedicalRecordMain.html"><i class="fa fa-caret-right"></i>中医住院病案首页</a></li>
+								<li><a target="content" href="html/admissionRecord/AdmissionRecordMain.html"><i class="fa fa-caret-right"></i>入院记录</a></li>
+								<li><a target="content" href="html/admissionDischargeRecord/AdmissionDischargeRecordMain.html"><i class="fa fa-caret-right"></i>24h内入出院记录</a></li>
+								<li><a target="content" href="html/admissionandDeathRecord/AdmissionandDeathRecordMain.html"><i class="fa fa-caret-right"></i>24h内入院死亡记录</a></li>
+								<li><a target="content" href="html/ipnDailyDiseaseRecord/IpnDailyDiseaseRecordMain.html"><i class="fa fa-caret-right"></i>住院病程-日常病程记录</a></li>
+								<li><a target="content" href="html/ipnSuperiorInspectionRecords/IpnSuperiorInspectionRecordsMain.html"><i class="fa fa-caret-right"></i>住院病程-上级医师查房记录</a></li>
+								<li><a target="content" href="html/ipnDiscussionCaseRecords/IpnDiscussionCaseRecordsMain.html"><i class="fa fa-caret-right"></i>住院病程-疑难病例讨论记录</a></li>
+								<li><a target="content" href="html/ipnShiftRecord/IpnShiftRecordMain.html"><i class="fa fa-caret-right"></i>住院病程-交接班记录</a></li>
+								<li><a target="content" href="html/ipnTransferDepartmentRecords/IpnTransferDepartmentRecordsMain.html"><i class="fa fa-caret-right"></i>住院病程-转科记录</a></li>
+								<li><a target="content" href="html/ipnStageSummary/IpnStageSummaryMain.html"><i class="fa fa-caret-right"></i>住院病程-阶段小结</a></li>
+								<li><a target="content" href="html/ipnSaveRecord/IpnSaveRecordMain.html"><i class="fa fa-caret-right"></i>住院病程-抢救记录</a></li>
+								<li><a target="content" href="html/hcrConsultationNote/HcrConsultationNoteMain.html"><i class="fa fa-caret-right"></i>住院病程-会诊记录</a></li>
+								<li><a target="content" href="html/hcrPreoperativeSummary/HcrPreoperativeSummaryMain.html"><i class="fa fa-caret-right"></i>住院病程-术前小结</a></li>
+								<li><a target="content" href="html/hcrPreoperativeDiscussion/HcrPreoperativeDiscussionMain.html"><i class="fa fa-caret-right"></i>住院病程-术前讨论</a></li>
+								<li><a target="content" href="html/hcrPostoperativeRecord/HcrPostoperativeRecordMain.html"><i class="fa fa-caret-right"></i>住院病程-术后首次病程记录</a></li>
+								<li><a target="content" href="html/hcrDischargeRecord/HcrDischargeRecordMain.html"><i class="fa fa-caret-right"></i>住院病程-出院记录</a></li>
+								<li><a target="content" href="html/hcrDeathRecord/HcrDeathRecordMain.html"><i class="fa fa-caret-right"></i>住院病程-死亡记录</a></li>
+								<li><a target="content" href="html/hcrDeathCaseDiscussion/HcrDeathCaseDiscussionMain.html"><i class="fa fa-caret-right"></i>住院病程-死亡病例讨论记录</a></li>
+								<li><a target="content" href="html/inpatientAdvice/InpatientAdviceMain.html"><i class="fa fa-caret-right"></i>住院医嘱</a></li>
+								<li><a target="content" href="html/dischargeSummary/DischargeSummaryMain.html"><i class="fa fa-caret-right"></i>出院小结</a></li>
+							</ul>							
+						</li>
+						<li class="nav-parent">
+							<a href="#"><span>健康档案</span></a>
+							<ul class="children">
+								<li><a target="content" href="html/birthCertificate/BirthCertificateMain.html"><i class="fa fa-caret-right"></i>出生医学证明</a></li>
+								<li><a target="content" href="html/neonatalFamilyVisit/NeonatalFamilyVisitMain.html"><i class="fa fa-caret-right"></i>新生儿家庭访视</a></li>
+								<li><a target="content" href="html/childrenPhysicalExamination/ChildrenPhysicalExaminationMain.html"><i class="fa fa-caret-right"></i>儿童健康体检</a></li>
+								<li><a target="content" href="html/firstPrenatalFollowup/FirstPrenatalFollowupMain.html"><i class="fa fa-caret-right"></i>首次产前随访服务</a></li>
+								<li><a target="content" href="html/prenatalFollowup/PrenatalFollowupMain.html"><i class="fa fa-caret-right"></i>产前随访服务</a></li>
+								<li><a target="content" href="html/postpartumVisit/PostpartumVisitMain.html"><i class="fa fa-caret-right"></i>产后访视</a></li>
+								<li><a target="content" href="html/postpartumHealthExamination/PostpartumHealthExaminationMain.html"><i class="fa fa-caret-right"></i>产后42天健康体检</a></li>
+								<li><a target="content" href="html/vaccinationReport/VaccinationReportMain.html"><i class="fa fa-caret-right"></i>预防接种报告</a></li>
+								<li><a target="content" href="html/infectiousDiseaseReport/InfectiousDiseaseReportMain.html"><i class="fa fa-caret-right"></i>传染病报告</a></li>
+								<li><a target="content" href="html/deathProof/DeathProofMain.html"><i class="fa fa-caret-right"></i>死亡医学证明</a></li>
+								<li><a target="content" href="html/hypertensionPatientsFollowup/HypertensionPatientsFollowupMain.html"><i class="fa fa-caret-right"></i>高血压患者随访服务</a></li>
+								<li><a target="content" href="html/diabetesFollowup/DiabetesFollowupMain.html"><i class="fa fa-caret-right"></i>2型糖尿病患者随访服务</a></li>
+								<li><a target="content" href="html/mentalIllnessInformation/MentalIllnessInformationMain.html"><i class="fa fa-caret-right"></i>重性精神疾病患者个人信息</a></li>
+								<li><a target="content" href="html/psychosisPatientsFollowup/PsychosisPatientsFollowupMain.html"><i class="fa fa-caret-right"></i>重性精神病患者随访服务</a></li>
+								<li><a target="content" href="html/adultHealthExamination/AdultHealthExaminationMain.html"><i class="fa fa-caret-right"></i>成人健康体检</a></li>
+							</ul>							
+						</li>
+				</ul>
+			</div>
+			<!-- leftpanelinner -->
+		</div>
+		<!-- leftpanel -->
+
+		<div class="mainpanel">
+
+			<div class="headerbar">
+				<a class="menutoggle"><i class="fa fa-bars"></i></a>
+				<div class="header-right">
+					<ul class="headermenu">
+						<li>
+							<div class="btn-group">
+								<a id="refreshFrame" class="btn btn-default tp-icon" href="#"><span class="glyphicon glyphicon-refresh"></span></a>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- header-right -->
+
+			</div>
+			<!-- headerbar -->
+			<div id="contentWrapper" style="padding: 0px 0px 0px 0px">
+				<iframe style="min-height: 1000px;" id="content" name="content"
+					src="#" frameborder="0" height="100%"
+					width="100%"></iframe>
+			</div>
+		</div>
+		<!-- mainpanel -->
+	</section>
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/modernizr.min.js"></script>
+	<script src="js/jquery.sparkline.min.js"></script>
+	<script src="js/toggles.min.js"></script>
+	<script src="js/retina.min.js"></script>
+	<script src="js/jquery.cookies.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="custom/js/index.js"></script>
+</body>
+</html>

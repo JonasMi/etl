@@ -1,0 +1,122 @@
+var datetimeValueHandler = function(value){
+	var date = new Date(value);
+	return date.format('yyyy-MM-dd hh:mm:ss');
+};
+var fieldModels = [ 
+{
+'name' : 'INPATIENT_TRANSFER_ID',
+'displayName' : '院内转科id',
+'type' : 'varchar(40)',
+'javaName' : 'inpatientTransferId',
+'note' : '转科信息在院内系统中的唯一标识',
+'nullable':false,
+'check':''},
+{
+'name' : 'STATUS',
+'displayName' : '转诊状态',
+'type' : 'varchar(20)',
+'javaName' : 'status',
+'note' : '',
+'nullable':false,
+'check':'CUS00017'},
+{
+'name' : 'PATIENT_ID',
+'displayName' : '患者id',
+'type' : 'varchar(40)',
+'javaName' : 'patientId',
+'note' : '引用患者信息表T_PATIENT院内患者id',
+'nullable':false,
+'check':''},
+{
+'name' : 'INPATIENT_REGISTRATION_ID',
+'displayName' : '住院流水号',
+'type' : 'varchar(40)',
+'javaName' : 'inpatientRegistrationId',
+'note' : '引用住院接诊表T_INPATIENT_REGISTRATION院内住院流水号',
+'nullable':false,
+'check':''},
+{
+'name' : 'OUT_EMP_ID',
+'displayName' : '转出操作人id',
+'type' : 'varchar(40)',
+'javaName' : 'outEmpId',
+'note' : '引用医务人员信息表T_EMPLOYEE院内人员id',
+'nullable':true,
+'check':''},
+{
+'name' : 'OUT_DPID',
+'displayName' : '转出科室id',
+'type' : 'varchar(40)',
+'javaName' : 'outDpid',
+'note' : '引用科室信息表T_DEPARTMENT院内科室id',
+'nullable':true,
+'check':''},
+{
+'name' : 'OUT_BEDNO',
+'displayName' : '转出床位信息id',
+'type' : 'varchar(40)',
+'javaName' : 'outBedno',
+'note' : '引用床位信息表T_BED院内床位id',
+'nullable':true,
+'check':''},
+{
+'name' : 'OUT_DATE',
+'displayName' : '转出时间',
+'type' : 'date',
+'javaName' : 'outDate',
+'note' : '',
+'nullable':true,
+'check':'',
+'valueHandler':datetimeValueHandler
+},
+{
+'name' : 'IN_EMP_ID',
+'displayName' : '转入操作人id',
+'type' : 'varchar(40)',
+'javaName' : 'inEmpId',
+'note' : '引用医务人员信息表T_EMPLOYEE院内人员id',
+'nullable':true,
+'check':''},
+{
+'name' : 'IN_DPID',
+'displayName' : '转入科室id',
+'type' : 'varchar(40)',
+'javaName' : 'inDpid',
+'note' : '引用科室信息表T_DEPARTMENT院内科室id',
+'nullable':true,
+'check':''},
+{
+'name' : 'IN_BEDNO',
+'displayName' : '转入床位信息id',
+'type' : 'varchar(40)',
+'javaName' : 'inBedno',
+'note' : '引用床位信息表T_BED院内床位id',
+'nullable':true,
+'check':''},
+{
+'name' : 'IN_DATE',
+'displayName' : '转入时间',
+'type' : 'date',
+'javaName' : 'inDate',
+'note' : '',
+'nullable':true,
+'check':'',
+'valueHandler':datetimeValueHandler
+},
+{
+'name' : 'TRANSFER_REASON',
+'displayName' : '转诊原因',
+'type' : 'varchar(500)',
+'javaName' : 'transferReason',
+'note' : '',
+'nullable':true,
+'check':''},
+{
+'name' : 'TRANSFER_RECORD',
+'displayName' : '转诊记录',
+'type' : 'varchar(500)',
+'javaName' : 'transferRecord',
+'note' : '',
+'nullable':true,
+'check':''}
+];

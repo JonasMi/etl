@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+    xmlns:task="http://www.springframework.org/schema/task" xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd
+                           http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <!-- 以下为rabbitmq相关 -->
+    <rabbit:connection-factory id="connectionFactory"
+        username="${queue.username}" addresses="${queue.address}" password="${queue.password}" />
+
+    <rabbit:admin connection-factory="connectionFactory" />
+
+    <!-- 已经完成消息队列 -->
+    <rabbit:queue id="messageSendedQueue" name="${queue.message.finished}"
+        queue-arguments="messageSendedQueueArgs" />
+
+    <rabbit:queue id="dataQualityQueue" name="${queue.message.data.quality}"
+        queue-arguments="dataQualityQueueArgs" />
+
+    <!-- <rabbit:queue id="nestErrorMessageQueue" name="${queue.nest.service.error.message}"
+        queue-arguments="nestErrorMessageQueueArgs" /> -->
+    
+    <!-- <rabbit:queue id="nestMessageQueue" name="${queue.nest.service.message}"
+        queue-arguments="nestMessageQueueArgs" /> -->
+        
+    
+
+    <rabbit:queue-arguments id="messageSendedQueueArgs">
+        <entry key="x-dead-letter-exchange" value="${queue.message.finished.dead.x}" />
+    </rabbit:queue-arguments>
+
+    <rabbit:queue-arguments id="dataQualityQueueArgs">
+        <entry key="x-dead-letter-exchange" value="${queue.message.data.quality.dead.x}" />
+    </rabbit:queue-arguments>
+
+    <!-- <rabbit:queue-arguments id="nestErrorMessageQueueArgs">
+        <entry key="x-dead-letter-exchange" value="${queue.nest.service.error.message.dead.x}" />
+    </rabbit:queue-arguments> -->
+    
+    <!-- <rabbit:queue-arguments id="nestMessageQueueArgs">
+        <entry key="x-dead-letter-exchange" value="${queue.nest.service.message.dead.x}" />
+    </rabbit:queue-arguments> -->
+
+    <rabbit:queue id="messageSendedDeadQueue" name="${queue.message.finished.dead}" />
+    <rabbit:queue id="dataQualityDeadQueue" name="${queue.message.data.quality.dead}" />
+    <!-- <rabbit:queue id="nestErrorMessageDeadQueue"
+        name="${queue.nest.service.error.message.dead}" /> -->
+        
+    <!-- <rabbit:queue id="nestMessageDeadQueue"
+        name="${queue.nest.service.message.dead}" /> -->
+
+    <rabbit:topic-exchange name="${queue.message.finished.x}">
+        <rabbit:bindings>
+            <rabbit:binding pattern="#" queue="messageSendedQueue" />
+        </rabbit:bindings>
+    </rabbit:topic-exchange>
+
+    <rabbit:topic-exchange name="${queue.message.data.quality.x}">
+        <rabbit:bindings>
+            <rabbit:binding pattern="#" queue="dataQualityQueue" />
+        </rabbit:bindings>
+    </rabbit:topic-exchange>
+
+    <rabbit:topic-exchange name="${queue.message.finished.dead.x}">
+        <rabbit:bindings>
+            <rabbit:binding pattern="#" queue="messageSendedDeadQueue" />
+        </rabbit:bindings>
+    </rabbit:topic-exchange>
+
+    <rabbit:topic-exchange name="${queue.message.data.quality.dead.x}">
+        <rabbit:bindings>
+            <rabbit:binding pattern="#" queue="dataQualityDeadQueue" />
+        </rabbit:bindings>
+    </rabbit:topic-exchange>
+    
+    <!-- <rabbit:topic-exchange name="${queue.nest.service.message.x}">
+        <rabbit:bindings>
+            <rabbit:binding pattern="#" queue="nestMessageQueue" />
+        </rabbit:bindings>
+    </rabbit:topic-exchange> -->
+    
+    <!-- <rabbit:topic-exchange name="${queue.nest.service.error.message.x}">
+        <rabbit:bindings>
+            <rabbit:binding pattern="#" queue="nestErrorMessageQueue" />
+        </rabbit:bindings>
+    </rabbit:topic-exchange> -->
+
+    <!-- <rabbit:topic-exchange name="${queue.nest.service.error.message.dead.x}">
+        <rabbit:bindings>
+            <rabbit:binding pattern="#" queue="nestErrorMessageDeadQueue" />
+        </rabbit:bindings>
+    </rabbit:topic-exchange> -->
+    
+    <!-- <rabbit:topic-exchange name="${queue.nest.service.message.dead.x}">
+        <rabbit:bindings>
+            <rabbit:binding pattern="#" queue="nestMessageDeadQueue" />
+        </rabbit:bindings>
+    </rabbit:topic-exchange> -->
+    
+	
+	
+    
+    <task:executor id="queueExecutor" pool-size="${queue.message.executor.pool-size}"
+        queue-capacity="${queue.message.executor.queue-capacity}" />
+
+    <rabbit:listener-container error-handler="defaultQueueErrorHandler"
+        connection-factory="connectionFactory" acknowledge="auto"
+        task-executor="queueExecutor" auto-startup="false">
+        <rabbit:listener queues="${queue.message.finished}"
+            ref="messageSendedQueueListenter" />
+        <rabbit:listener queues="${queue.message.data.quality}"
+            ref="dataQualityQueueListenter" />
+            
+        <!-- <rabbit:listener queues="${queue.nest.service.error.message}"
+            ref="nestErrorMessageListenter" />
+        <rabbit:listener queues="${queue.nest.service.message}"
+            ref="nestMessageListenter" /> 
+            
+        <rabbit:listener queues="${queue.ems.message.es}"
+            ref="nestErrorMessageESListener" />
+            
+        <rabbit:listener queues="${queue.coordinator.error.msg}"
+            ref="nestCoordinatorErrorMsg" /> -->
+            
+        <!-- <rabbit:listener queues="${queue.ems.message.mysql}"
+            ref="nestErrorMessageMysqlListener" /> -->
+        
+    </rabbit:listener-container>
+    
+    <!-- coordinator -->
+	<!-- <rabbit:queue id="nestCoordinatorQ" name="${queue.coordinator.error.msg}"  queue-arguments="nestCoordinatorQArgs"/>
+	  
+	<rabbit:queue-arguments id="nestCoordinatorQArgs">
+		<entry key="x-dead-letter-exchange" value="${queue.coordinator.error.msg.dead.x}" />
+	</rabbit:queue-arguments> 
+	
+	<rabbit:topic-exchange name="${queue.coordinator.error.msg.dead.x}">
+		<rabbit:bindings>
+			<rabbit:binding pattern="#" queue="nestCoordinatorDeadQueue" />
+		</rabbit:bindings>
+	</rabbit:topic-exchange>
+	<rabbit:queue id="nestCoordinatorDeadQueue" name="${queue.coordinator.error.msg.dead}" /> -->
+	<!-- coordinator -->
+	
+	
+	
+	
+	<!-- <rabbit:topic-exchange name="${queue.ems.message.x}">
+		<rabbit:bindings>
+			<rabbit:binding pattern="#" queue="emsMessageESQ" />
+			<rabbit:binding pattern="#" queue="emsMessageMysqlQ" />
+		</rabbit:bindings>
+	</rabbit:topic-exchange> -->
+	
+	<!-- <rabbit:queue id="emsMessageESQ" name="${queue.ems.message.es}"
+		queue-arguments="emsMessageESQArgs" /> -->
+	<!-- <rabbit:queue id="emsMessageMysqlQ" name="${queue.ems.message.mysql}"
+		queue-arguments="emsMessageMysqlQArgs" /> -->
+	
+	
+	<!-- <rabbit:queue-arguments id="emsMessageESQArgs">
+		<entry key="x-dead-letter-exchange" value="${queue.ems.message.dead.es.x}" />
+	</rabbit:queue-arguments>  -->
+	<!-- <rabbit:queue-arguments id="emsMessageMysqlQArgs">
+		<entry key="x-dead-letter-exchange" value="${queue.ems.message.dead.mysql.x}" />
+	</rabbit:queue-arguments>  -->
+	
+	
+	<!-- <rabbit:topic-exchange name="${queue.ems.message.dead.es.x}">
+		<rabbit:bindings>
+			<rabbit:binding pattern="#" queue="messageEMSESDeadQueue" />
+		</rabbit:bindings>
+	</rabbit:topic-exchange> -->
+	<!-- <rabbit:topic-exchange name="${queue.ems.message.dead.mysql.x}">
+		<rabbit:bindings>
+			<rabbit:binding pattern="#" queue="messageEMSMsqlDeadQueue" />
+		</rabbit:bindings>
+	</rabbit:topic-exchange> -->
+	
+	<!-- <rabbit:queue id="messageEMSESDeadQueue" name="${queue.ems.message.dead.es}" /> -->
+	<!-- <rabbit:queue id="messageEMSMsqlDeadQueue" name="${queue.ems.message.dead.mysql}" /> -->
+		
+</beans>

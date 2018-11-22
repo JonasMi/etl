@@ -1,0 +1,24 @@
+<assembly>
+	<id>bin</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+
+	<fileSets>
+		<fileSet>
+			<directory>dist</directory>
+			<outputDirectory>/</outputDirectory>
+			<lineEnding>unix</lineEnding>
+			<fileMode>0644</fileMode>
+			<excludes>
+				<exclude>**/static/**</exclude>
+			</excludes>
+		</fileSet>
+
+		<fileSet>
+        <directory>dist/static</directory>
+            <outputDirectory>/static</outputDirectory>
+            <fileMode>0644</fileMode>
+        </fileSet>
+	</fileSets>
+</assembly>

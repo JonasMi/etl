@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="../../images/favicon.png"
+	type="image/png">
+<title>Nest消息代理服务网页客户端</title>
+<link href="../../css/style.default.css" rel="stylesheet">
+<link href="../../css/jquery.datatables.css" rel="stylesheet">
+<link href="../../custom/css/frame.css" rel="stylesheet">
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+        <script src="../../js/html5shiv.js"></script>
+        <script src="../../js/respond.min.js"></script>
+        <![endif]-->
+</head>
+<body>
+	<!-- Preloader -->
+	<div id="preloader">
+		<div id="status">
+			<i class="fa fa-spinner fa-spin"></i>
+		</div>
+	</div>
+	<div class="pageheader">
+		<h2>
+			<i class="fa fa-home"></i> 门诊登记消息 <span>门诊登记消息记录</span>
+		</h2>
+		<div class="breadcrumb-wrapper">
+			<span class="label">你的位置:</span>
+			<ol class="breadcrumb">
+				<li><a href="#">基础资源</a></li>
+				<li class="active">门诊登记</li>
+			</ol>
+		</div>
+	</div>
+	<div id="contentpanel" class="contentpanel">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form id="searchForm" class="form-horizontal" action="#"
+					method="post">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="panel-btns">
+								<a href="" class="minimize">−</a> <a href="#" id="refresh"
+									class="refresh"><span style="font-size: 14px"
+									class="glyphicon glyphicon-refresh"></span></a>
+								<p>按条件查询</p>
+							</div>
+							<button type="submit" class="refresh" style="display: none;"></button>
+						</div>
+						<div class="panel-body">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">消息ID</label>
+								<div class="col-sm-2">
+									<input type="text" placeholder="输入消息ID" name="uid"
+										class="form-control">
+								</div>
+								<label class="col-sm-2 control-label">上传机构</label>
+								<div class="col-sm-2">
+									<input type="text" placeholder="输入上传机构ID" name="upHospital"
+										class="form-control">
+								</div>
+								<label class="col-sm-2 control-label">开发商</label>
+								<div class="col-sm-2">
+									<input type="text" placeholder="输入开发商名称" name=developer
+										class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">操作状态</label>
+								<div class="col-sm-2">
+									<select name="operationState" class="form-control">
+										<option value="">不限</option>
+										<option value="CREATE">新增</option>
+										<option value="UPDATE">更新</option>
+									</select>
+
+								</div>
+								<label class="col-sm-2 control-label">处理状态</label>
+								<div class="col-sm-2">
+									<select name="dealState" class="form-control">
+										<option value="">不限</option>
+										<option value="UNPROCESSED">未处理</option>
+										<option value="PROCESSED">已处理</option>
+									</select>
+								</div>
+								<label class="col-sm-2 control-label">错误类型</label>
+								<div class="col-sm-2">
+									<input type="text" placeholder="输入开发商名称" name="errorType"
+										class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">上传时间(起始)</label>
+								<div class="col-sm-2">
+									<input type="text" class="form-control"
+										onClick="WdatePicker({skin:'twoer',dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+										readonly="readonly" name="afterUpTime"
+										placeholder="点击选择错误起始时间">
+								</div>
+								<label class="col-sm-2 control-label">上传时间(截止)</label>
+								<div class="col-sm-2">
+									<input type="text" class="form-control"
+										onClick="WdatePicker({skin:'twoer',dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+										readonly="readonly" name="untilUpTime"
+										placeholder="点击选择错误截止时间">
+								</div>
+								<label class="col-sm-2 control-label">处理结果</label>
+								<div class="col-sm-2">
+									<select name="dealSuccess" class="form-control">
+										<option value="">不限</option>
+										<option value="true">处理成功</option>
+										<option value="false">处理失败</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				<div class="btn-toolbar" role="toolbar">
+					<div class="btn-group" role="group">
+						<a id="batchSend" href="#" data-toggle="tooltip"
+							class="btn btn-sm btn-white tooltips" title="发送"> <span
+							class="glyphicon glyphicon-send"></span>
+						</a> <a id="batchDelete" href="#" data-toggle="tooltip"
+							class="btn btn-sm btn-white tooltips" title="删除"> <span
+							class="glyphicon glyphicon-trash"></span>
+						</a>
+					</div>
+					<div class="btn-group" role="group">
+						<a id="lookMessageMeta" href="#" data-toggle="tooltip"
+							class="btn btn-sm btn-white tooltips" title="查看结构"> <span
+							class="glyphicon glyphicon-th-list"></span>
+						</a>
+					</div>
+					<div class="btn-group" role="group">
+						<a href="#" data-toggle="tooltip"
+							class="refresh btn btn-sm btn-white tooltips" title="刷新"> <span
+							class="glyphicon glyphicon-refresh"></span>
+						</a>
+					</div>
+				</div>
+				<div class="table-responsive">
+					<table id="recordTable" class="table">
+						<thead>
+							<tr>
+								<th>
+									<div class="ckbox ckbox-success">
+										<input type="checkbox" id="checkAll"> <label
+											for="checkAll"></label>
+									</div>
+								</th>
+								<th>消息ID</th>
+								<th>上传机构</th>
+								<th>上传时间</th>
+								<th>开发商</th>
+								<th>操作状态</th>
+								<th>处理状态</th>
+								<th>错误类型</th>
+							</tr>
+						</thead>
+					</table>
+
+				</div>
+				<div id="page-wrapper"></div>
+			</div>
+
+		</div>
+	</div>
+	<div id="messageDetailModal" class="modal fade bs-example-modal-lg"
+		tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">消息详情</h4>
+				</div>
+				<div class="modal-body">
+					<ul class="nav nav-tabs nav-justified">
+						<li role="presentation" class="active"><a data-toggle="tab"
+							href="#nestRequests">请求消息</a></li>
+						<li role="presentation"><a data-toggle="tab"
+							href="#dataColumns">数据字段</a></li>
+
+
+					</ul>
+					<div class="tab-content">
+
+						<div class="tab-pane active" id="nestRequests">
+							<div class="table-responsive">
+								<table id="nestRequestsTable" class="table">
+									<thead>
+										<tr>
+											<th>请求序号</th>
+											<th>消息内容</th>
+											<th>SOAPAction</th>
+											<th>发送次数</th>
+											<th>发送时间</th>
+											<th>发送状态</th>
+											<th>处理结果</th>
+											<th>发送消息</th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+						</div>
+						<div class="tab-pane" id="dataColumns">
+							<div class="table-responsive">
+								<table id="dataColumnsTable" class="table">
+									<thead>
+										<tr>
+											<th>名称</th>
+											<th>显示名称</th>
+											<th>数据类型</th>
+											<th>数据值</th>
+											<th>备注</th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div id="nestRequestDetailModal" class="modal fade bs-example-modal-lg"
+		tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Nest请求详情</h4>
+				</div>
+				<div class="modal-body">
+					<div class="panel">
+						<div class="panel-body" style="max-height: 600px;overflow: scroll;">
+							<div class="col-sm-12">
+								<h4 class="subtitle subtitle-lined">基本信息</h4>
+								<div class="row">
+									<label class="col-sm-2 control-label">请求序号</label>
+									<div class="col-sm-2" id="request_order"></div>
+									<label class="col-sm-2 control-label">请求证书</label>
+									<div class="col-sm-2" id="request_cn"></div>
+								</div>
+								<div class="row">
+									<label class="col-sm-2 control-label">SOAPAction</label>
+									<div class="col-sm-4" id="request_soapAction"></div>
+								</div>
+								<div class="row">
+									<label class="col-sm-2 control-label">发送时间</label>
+									<div class="col-sm-2" id="request_sendTime"></div>
+									<label class="col-sm-2 control-label">发送状态</label>
+									<div class="col-sm-2" id="request_sended"></div>
+									<label class="col-sm-2 control-label">处理结果</label>
+									<div class="col-sm-2" id="request_success"></div>
+								</div>
+							</div>
+							<div class="col-sm-12">
+								<h4 class="subtitle subtitle-lined">请求内容</h4>
+								<textarea id="request_body" readonly="readonly" class="form-control" rows="16" cols=""></textarea>
+							</div>
+							<div id="exceptionContent" class="col-sm-12">
+								<h4 class="subtitle subtitle-lined">消息异常</h4>
+								<div>
+									<span class="text-primary" id="request_errorType"></span>:<span
+										id="request_errorMessage" class="text-danger"></span>
+								</div>
+								<textarea id="request_errorDetail" readonly="readonly" class="form-control" rows="16" cols=""></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="messageMetaModal" class="modal fade bs-example-modal-lg"
+		tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">OutpatientRegistration 消息数据结构</h4>
+				</div>
+				<div class="modal-body">
+					<table id="messageMetaTable" class="table">
+						<thead>
+							<tr>
+								<th>名称</th>
+								<th>显示名称</th>
+								<th>类型</th>
+								<th>必填</th>
+								<th>约束</th>
+								<th>备注</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../../js/jquery-1.11.1.min.js"></script>
+	<script src="../../lib/My97DatePicker/WdatePicker.js"></script>
+	<script src="../../js/jquery.validate.min.js"></script>
+	<script src="../../js/jquery.blockUI.js"></script>
+	<script src="../../js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+	<script src="../../js/modernizr.min.js"></script>
+	<script src="../../js/jquery.sparkline.min.js"></script>
+	<script src="../../js/jquery.cookies.js"></script>
+	<script src="../../js/toggles.min.js"></script>
+	<script src="../../js/retina.min.js"></script>
+	<script src="../../js/custom.js"></script>
+	<script src="../../js/select2.min.js"></script>
+	<script src="../../custom/js/common/Common.js"></script>
+	<script src="../../custom/js/common/Pager.js"></script>
+	<script src="js/OutpatientRegistrationFieldModels.js"></script>
+	<script src="../../custom/js/common/NestRequestSendTask.js"></script>
+	<script src="../../custom/js/common/FhirResourceService.js"></script>
+	<script src="../../custom/js/common/FhirResourceManager.js"></script>
+	<script src="js/OutpatientRegistrationMain.js"></script>
+</body>
+</html>
